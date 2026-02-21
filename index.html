@@ -5,6 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>H & N Customization Studio</title>
   <style>
+/* Flipkart style slider */
+.fp-slider {
+  width: 100%;
+  max-width: 900px;
+  margin: 30px auto;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.fp-track {
+  display: flex;
+  gap: 20px;
+}
+
+.fp-track img {
+  width: 300px;      /* image size */
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
     body {
       margin: 0;
       font-family: 'Georgia', serif;
@@ -172,15 +193,22 @@
 <section id="gallery">
   <h3>Our Work</h3>
 
-  <div class="slider">
-    <div class="slides">
-      <img src="photo1.jpeg" alt="Our Work 1">
-      <img src="photo2.jpeg" alt="Our Work 2">
-      <img src="photo3.jpeg" alt="Our Work 3">
-      <img src="photo4.jpeg" alt="Our Work 4">
+  <div class="fp-slider">
+    <div class="fp-track">
+      <img src="photo1.jpeg">
+      <img src="photo2.jpeg">
+      <img src="photo3.jpeg">
+      <img src="photo4.jpeg">
+
+      <!-- repeat for smooth loop -->
+      <img src="photo1.jpeg">
+      <img src="photo2.jpeg">
+      <img src="photo3.jpeg">
+      <img src="photo4.jpeg">
     </div>
   </div>
 </section>
+
 
 
 <section class="contact">
@@ -211,9 +239,27 @@
 </footer>
 
 <a class="whatsapp" href="https://wa.me/917078731920" target="_blank">💬 Order on WhatsApp</a>
+<script>
+  const track = document.querySelector('.fp-track');
+  let speed = 0.25; // 👈 LOWER = SLOWER (0.1 ultra slow)
+
+  function moveSlider() {
+    track.scrollLeft += speed;
+
+    // reset smoothly
+    if (track.scrollLeft >= track.scrollWidth / 2) {
+      track.scrollLeft = 0;
+    }
+
+    requestAnimationFrame(moveSlider);
+  }
+
+  moveSlider();
+</script>
 
 </body>
 </html>
+
 
 
 
